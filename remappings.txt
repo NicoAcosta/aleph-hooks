@@ -3,3 +3,5 @@
 
 @openzeppelin/uniswap-hooks/=lib/uniswap-hooks/
 @openzeppelin/=lib/openzeppelin-contracts/
+
+hooks/=src/hooks/
