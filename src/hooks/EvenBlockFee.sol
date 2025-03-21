@@ -11,6 +11,8 @@ import {LPFeeLibrary} from "@uniswap/v4-core/src/libraries/LPFeeLibrary.sol";
 import {BeforeSwapDeltaLibrary} from "@uniswap/v4-core/src/types/BeforeSwapDelta.sol";
 
 contract EvenBlockFee is BaseHook {
+    event SwapFee(uint24 fee);
+
     constructor(IPoolManager _manager) BaseHook(_manager) {}
 
     function getHookPermissions()
@@ -43,9 +45,11 @@ contract EvenBlockFee is BaseHook {
         PoolKey calldata,
         IPoolManager.SwapParams calldata,
         bytes calldata
-    ) internal view override returns (bytes4, BeforeSwapDelta, uint24) {
+    ) internal override returns (bytes4, BeforeSwapDelta, uint24) {
         uint24 fee = _getFee();
         uint24 feeWithFlag = fee | LPFeeLibrary.OVERRIDE_FEE_FLAG;
+
+        emit SwapFee(fee);
 
         return (
             this.beforeSwap.selector,
