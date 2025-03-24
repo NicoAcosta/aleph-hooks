@@ -34,11 +34,11 @@ contract HoldersBenefits is BaseHook {
                 beforeRemoveLiquidity: false,
                 afterRemoveLiquidity: false,
                 beforeSwap: true,
-                afterSwap: false,
+                afterSwap: true,
                 beforeDonate: false,
                 afterDonate: false,
                 beforeSwapReturnDelta: false,
-                afterSwapReturnDelta: false,
+                afterSwapReturnDelta: true,
                 afterAddLiquidityReturnDelta: false,
                 afterRemoveLiquidityReturnDelta: false
             });
