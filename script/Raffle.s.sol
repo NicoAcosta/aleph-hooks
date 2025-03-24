@@ -5,12 +5,15 @@ import {Script} from "forge-std/Script.sol";
 import {console} from "forge-std/console.sol";
 
 contract RaffleScript is Script {
+    uint256 public constant TOTAL_WINNERS = 4;
+    uint256 public constant TOTAL_TICKETS = 9;
+
     function run() public {
         vm.startBroadcast();
 
         // Generate 4 random numbers
-        for (uint256 i = 0; i < 4; i++) {
-            uint256 rand = randomNumber(1, 9, i);
+        for (uint256 i = 0; i < TOTAL_WINNERS; i++) {
+            uint256 rand = randomNumber(1, TOTAL_TICKETS, i);
             console.log("Random number:", rand);
         }
     }
@@ -30,7 +33,7 @@ contract RaffleScript is Script {
                     block.gaslimit,
                     block.number,
                     msg.sender,
-                    2 * i
+                    i
                 )
             )
         );
