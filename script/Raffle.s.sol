@@ -4,6 +4,9 @@ pragma solidity ^0.8.0;
 import {Script} from "forge-std/Script.sol";
 import {console} from "forge-std/console.sol";
 
+// You can change the total winners and tickets
+// Run in the terminal:
+// forge script script/Raffle.s.sol:RaffleScript
 contract RaffleScript is Script {
     uint256 public constant TOTAL_WINNERS = 4;
     uint256 public constant TOTAL_TICKETS = 9;
