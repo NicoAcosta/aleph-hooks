@@ -7,6 +7,9 @@ import {Hooks} from "@uniswap/v4-core/src/libraries/Hooks.sol";
 
 import {PoolKey} from "@uniswap/v4-core/src/types/PoolKey.sol";
 
+import {BeforeSwapDelta} from "@uniswap/v4-core/src/types/BeforeSwapDelta.sol";
+import {BeforeSwapDeltaLibrary} from "@uniswap/v4-core/src/types/BeforeSwapDelta.sol";
+
 interface IWhitelist {
     function isWhitelisted(address LP) external view returns (bool whitelisted);
 }
@@ -57,5 +60,16 @@ contract WhitelistLPs is BaseHook {
         if (!whitelist.isWhitelisted(sender)) revert NotWhitelisted();
 
         return this.beforeAddLiquidity.selector;
+    }
+
+    function _beforeSwap(
+        address sender,
+        PoolKey calldata,
+        IPoolManager.SwapParams calldata,
+        bytes calldata
+    ) internal override returns (bytes4, BeforeSwapDelta, uint24) {
+        if (!whitelist.isWhitelisted(sender)) revert NotWhitelisted();
+
+        return (this.beforeSwap.selector, BeforeSwapDeltaLibrary.ZERO_DELTA, 0);
     }
 }

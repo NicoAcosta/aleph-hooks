@@ -2,6 +2,7 @@
 @uniswap/v4-periphery/=lib/v4-periphery/
 
 @openzeppelin/uniswap-hooks/=lib/uniswap-hooks/
+@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/
 @openzeppelin/=lib/openzeppelin-contracts/
 
 hooks/=src/hooks/

@@ -8,8 +8,8 @@ import {console} from "forge-std/console.sol";
 // Run in the terminal:
 // forge script script/Raffle.s.sol:RaffleScript
 contract RaffleScript is Script {
-    uint256 public constant TOTAL_WINNERS = 4;
-    uint256 public constant TOTAL_TICKETS = 9;
+    uint256 public constant TOTAL_WINNERS = 1;
+    uint256 public constant TOTAL_TICKETS = 15;
 
     function run() public {
         vm.startBroadcast();
