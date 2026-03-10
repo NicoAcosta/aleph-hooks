@@ -67,7 +67,7 @@ contract WhitelistLPs is BaseHook {
         PoolKey calldata,
         IPoolManager.SwapParams calldata,
         bytes calldata
-    ) internal override returns (bytes4, BeforeSwapDelta, uint24) {
+    ) internal view override returns (bytes4, BeforeSwapDelta, uint24) {
         if (!whitelist.isWhitelisted(sender)) revert NotWhitelisted();
 
         return (this.beforeSwap.selector, BeforeSwapDeltaLibrary.ZERO_DELTA, 0);
